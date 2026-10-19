@@ -230,7 +230,7 @@
 const PEOPLE = [
   { id: 'miliardar', name: 'Pan Miliardář', bio: 'Chápe starosti důchodců. Má jich 40 000 na výplatní pásce.', acc: 'tophat', color: '#2b2b2b', prop: 'money' },
   { id: 'poslanec', name: 'Pan Poslanec', bio: 'Jezdí MHD. Jednou. Na kameru.', acc: 'tie', color: '#1f4e9c', prop: 'briefcase' },
-  { id: 'ministr', name: 'Paní Ministryně', bio: 'Ví, kolik stojí rohlík. Odhadem 45 Kč.', acc: 'bow', color: '#8a2be2', prop: 'mic' },
+  { id: 'ministr', name: 'Paní Ministryně', bio: 'Ví, kolik stojí rohlík. Odhadem 45 Kč.', acc: 'bow', color: '#8a2be2', prop: 'mic', f: true },
   { id: 'hejtman', name: 'Pan Hejtman', bio: 'Na pivu s lidem. V salonku. S ochrankou.', acc: 'cap', color: '#d7262b', prop: 'beer' },
   { id: 'lobbista', name: 'Pan Lobbista', bio: 'Jen poradce. Neformální. Pro všechny vlády.', acc: 'shades', color: '#444', prop: 'briefcase' },
   { id: 'influencer', name: 'Influencer s kampaní', bio: '„Taky jsem z lidu.“ Sponzorováno.', acc: 'shades', color: '#ff7a00', prop: 'phone' },
@@ -333,13 +333,13 @@ function answer(saidYes) {
   if (saidYes) {
     stats.naive++;
     v.className = 'verdict bad';
-    v.innerHTML = `<b>ŠPATNĚ! 🙄</b>${YES_LINES[Math.floor(Math.random() * YES_LINES.length)]}<br>Za trest se teď musíš dívat, jak se stydí.`;
+    v.innerHTML = `<b>ŠPATNĚ! 🙄</b>${YES_LINES[Math.floor(Math.random() * YES_LINES.length)]}<br>A protože není obyčejný člověk, potrestáme ${current.f ? 'ji' : 'ho'} ostudou.`;
     $('stage').classList.add('shake');
     setTimeout(() => $('stage').classList.remove('shake'), 400);
   } else {
     stats.correct++;
     v.className = 'verdict good';
-    v.innerHTML = `<b>Ano, máš pravdu,</b>toto není obyčejný člověk.<br>…ale stejně ho zahanbíme. Pro jistotu.`;
+    v.innerHTML = `<b>Ano, máš pravdu,</b>toto není obyčejný člověk.<br>A protože není obyčejný člověk, potrestáme ${current.f ? 'ji' : 'ho'} ostudou.`;
   }
   stats.score++;
   stats.per[current.id] = (stats.per[current.id] || 0) + 1;
